@@ -1,6 +1,6 @@
 'use strict';
 
-var dappAddress = "n1n9Gq5Mef6f1cohkH6g8q7rzVrcZK61PyQ";
+var dappAddress = "n1fJ4kHR7DAQTeuprBhU1Uvk1NdkYa4pzB9";
 var FundShow = function() {
 
 }

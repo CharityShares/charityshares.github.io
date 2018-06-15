@@ -51,23 +51,21 @@ CharityShare.prototype = {
   },
 
 
-  _validateData: function(name, idea) {
+  _validateData: function(name) {
 
-    if (name === "" || idea === "") {
+    if (name === "") {
       throw new Error("empty field / value");
     }
 
 
-    if (name.length > 64 && idea.length > 250) {
+    if (name.length > 64) {
       throw new Error("Invalid length. Max name length 64 and 250 for desription");
     }
 
     if (!/^[a-zA-Z0-9_\-.]+$/.test(name)) {
       throw new Error("Invalid data. allowed characters: A-Z, 0-9, _, -, .");
     }
-    if (!/^[a-zA-Z0-9_\-.]+$/.test(idea)) {
-      throw new Error("Invalid data. allowed characters: A-Z, 0-9, _, -, .");
-    }
+
     return true;
   },
 
@@ -84,11 +82,10 @@ CharityShare.prototype = {
     var obj = text;
     var addr = Blockchain.transaction.from;
     obj.name = obj.name.trim();
-    obj.idea = obj.idea.trim();
     obj.key = obj.key.trim();
     obj.name = obj.name.toLowerCase();
     obj.from = addr;
-    this._validateData(obj.name, obj.idea);
+    this._validateData(obj.name);
     if (this.addrs.get(addr)) {
       return checker
     }
