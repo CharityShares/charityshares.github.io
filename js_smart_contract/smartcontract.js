@@ -88,7 +88,7 @@ CharityShare.prototype = {
     this._validateData(obj.name);
     if (obj.idea.length > 250) {
       checker.success = false;
-      checker.message = "Invalid length. Max length 250 for desription";
+      checker.message = "Invalid length. Max length for description is 250 symbols";
       return checker
     }
     if (this.addrs.get(addr)) {
