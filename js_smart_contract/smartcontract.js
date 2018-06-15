@@ -86,6 +86,11 @@ CharityShare.prototype = {
     obj.name = obj.name.toLowerCase();
     obj.from = addr;
     this._validateData(obj.name);
+    if (obj.idea.length > 250) {
+      checker.success = false;
+      checker.message = "Invalid length. Max length 250 for desription";
+      return checker
+    }
     if (this.addrs.get(addr)) {
       return checker
     }
