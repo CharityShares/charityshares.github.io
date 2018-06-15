@@ -2,7 +2,7 @@
 
 'use strict';
 
-var dappAddress = "n1goAbaomNuucAHVaKkKahxm3kmTDhA3d4n";
+var dappAddress = "n1jE1s9sVrjd1n37eKjPhPYLyC7qcU2Qoqk";
 
 var InputFund = function() {
 
