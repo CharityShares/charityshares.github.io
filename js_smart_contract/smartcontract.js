@@ -62,11 +62,16 @@ CharityShare.prototype = {
       throw new Error("Invalid length. Max name length 64 and 250 for desription");
     }
 
-    if (!/^[a-zA-Z0-9_\-.]+$/.test(name)) {
-      throw new Error("Invalid data. allowed characters: A-Z, 0-9, _, -, .");
-    }
-
     return true;
+  },
+
+  _isEmpty: function() {
+    var incomingPayment = Blockchain.transaction.value;
+    if (incomingPayment.eq(0)) {
+      return true;
+    } else {
+      return false;
+    }
   },
 
   cN: function(name) {
@@ -78,9 +83,14 @@ CharityShare.prototype = {
       "success": false,
       "message": "Sorry, you can create only one charity Fund!"
     };
+    if (!this._isEmpty()) {
+      checker.message = "It is free to create a fund. Please set transaction value to 0";
+      return checker;
+    }
 
     var obj = text;
     var addr = Blockchain.transaction.from;
+
     obj.name = obj.name.trim();
     obj.key = obj.key.trim();
     obj.name = obj.name.toLowerCase();
