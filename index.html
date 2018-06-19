@@ -81,9 +81,9 @@
 				<div class="fund__info  list_6">
 
 					<img class="card-img-top center "  src="nebchar.jpg" alt="Card image cap">
-					<% var key = escape(list[i].key)%>
-					<% var key2 = JSON.stringify(key)%>
-					<a href="<%key%>" class="fund__title " ><p align="center"><%:=list[i].name%></p></a>
+					<% var key = list[i].key%>
+
+					<a href="<%:=key%>" class="fund__title " ><p align="center"><%:=list[i].name%></p></a>
 
 					<p class="fund__option" style="font-size:1.3em">Our goal: <br> <%:=list[i].idea%></p>
 
