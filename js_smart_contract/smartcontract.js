@@ -84,8 +84,8 @@ CharityShare.prototype = {
       "message": "Sorry, you can create only one charity Fund!"
     };
     if (!this._isEmpty()) {
-      checker.message = "It is free to create a fund. Please set transaction value to 0";
-      return checker;
+      throw new Error( "It is free to create a fund. Please set transaction value to 0");
+      
     }
 
     var obj = text;
