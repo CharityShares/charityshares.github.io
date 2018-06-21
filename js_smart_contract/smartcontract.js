@@ -78,14 +78,14 @@ CharityShare.prototype = {
     return this.names.get(name);
 
   },
+
   save: function(text) {
     var checker = {
-      "success": false,
-      "message": "Sorry, you can create only one charity Fund!"
+      "success": true,
+      "message": "Fund will be successfully created in one block confirmation! Be sure to set transaction value to 0!"
     };
     if (!this._isEmpty()) {
-      throw new Error( "It is free to create a fund. Please set transaction value to 0");
-      
+      throw new Error("It is free to create a fund. Please set transaction value to 0");
     }
 
     var obj = text;
@@ -97,17 +97,13 @@ CharityShare.prototype = {
     obj.from = addr;
     this._validateData(obj.name);
     if (obj.idea.length > 250) {
-      checker.success = false;
-      checker.message = "Invalid length. Max length for description is 250 symbols";
-      return checker
+      throw new Error("Invalid length. Max length for description is 250 symbols");
     }
     if (this.addrs.get(addr)) {
-      return checker
+      throw new Error("Sorry, you can create only one charity Fund!");
     }
     if (this.names.get(obj.name)) {
-      checker.success = false;
-      checker.message = "Fund name is already reserved. Try another one!";
-      return checker
+      throw new Error("Fund name is already reserved. Try another one!");
     }
 
 
@@ -127,8 +123,6 @@ CharityShare.prototype = {
     this.funds.put(fund.key, fund);
     this.fund_list_size += 1;
 
-    checker.success = true;
-    checker.message = "Fund will be successfully created in one block confirmation!";
     return checker;
 
   },
@@ -150,10 +144,8 @@ CharityShare.prototype = {
 
     if (!(counter === counter2)) {
       Blockchain.transfer(from, ammount);
-      return {
-        "success": false,
-        "message": "Transaction failed. Be sure to enter valid Fund names!"
-      }
+      throw new Error("Transaction failed. Be sure to enter valid Fund names!");
+      
     }
     for (var i = 0; i < len; i += 1) {
       arguments[i] = arguments[i].trim();
